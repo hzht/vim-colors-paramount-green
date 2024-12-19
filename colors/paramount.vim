@@ -21,11 +21,13 @@ let g:colors_name='paramount'
 
 let s:black           = { "gui": "#000000", "cterm": "232" }
 let s:medium_gray     = { "gui": "#767676", "cterm": "243" }
+let s:indent_vline_gray = { "gui": "#242424", "cterm": "243" }
 let s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
 let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
 let s:subtle_black    = { "gui": "#303030", "cterm": "236" }
 let s:light_black     = { "gui": "#262626", "cterm": "235" }
-let s:lighter_black   = { "gui": "#4E4E4E", "cterm": "239" }
+let s:lighter_black   = { "gui": "#4E4E4E", "cterm": "239" } "#4E4E4E
+let s:comments        = { "gui": "#404040", "cterm": "239" }
 let s:light_gray      = { "gui": "#A8A8A8", "cterm": "248" }
 let s:lighter_gray    = { "gui": "#C6C6C6", "cterm": "251" }
 let s:lightest_gray   = { "gui": "#EEEEEE", "cterm": "255" }
@@ -34,7 +36,8 @@ let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
 let s:light_red       = { "gui": "#E32791", "cterm": "1"   }
 let s:orange          = { "gui": "#D75F5F", "cterm": "167" }
 let s:darker_blue     = { "gui": "#005F87", "cterm": "18"  }
-let s:dark_blue       = { "gui": "#008EC4", "cterm": "32"   }
+let s:folder_yellow   = { "gui": "#a790d5", "cterm": "32"  }
+let s:dark_blue       = { "gui": "#008EC4", "cterm": "32"  }
 let s:blue            = { "gui": "#20BBFC", "cterm": "12"  }
 let s:light_blue      = { "gui": "#b6d6fd", "cterm": "153" }
 let s:dark_cyan       = { "gui": "#20A5BA", "cterm": "6"   }
@@ -43,8 +46,9 @@ let s:dark_green      = { "gui": "#10A778", "cterm": "2"   }
 let s:light_green     = { "gui": "#5FD7A7", "cterm": "10"  }
 let s:dark_purple     = { "gui": "#af5fd7", "cterm": "134" }
 let s:light_purple    = { "gui": "#a790d5", "cterm": "140" }
+let s:selected_text   = { "gui": "#413273", "cterm": "140" }
 let s:yellow          = { "gui": "#F3E430", "cterm": "11"  }
-let s:light_yellow    = { "gui": "#ffff87", "cterm": "228"   }
+let s:light_yellow    = { "gui": "#ffff87", "cterm": "228" }
 let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
 
 let s:background = &background
@@ -52,6 +56,7 @@ let s:background = &background
 if &background == "dark"
   let s:bg              = s:black
   let s:bg_subtle       = s:lighter_black
+  let s:bg_comments     = s:comments
   let s:bg_very_subtle  = s:subtle_black
   let s:norm            = s:lighter_gray
   let s:norm_subtle     = s:medium_gray
@@ -59,7 +64,7 @@ if &background == "dark"
   let s:cyan            = s:light_cyan
   let s:green           = s:light_green
   let s:red             = s:light_red
-  let s:visual          = s:light_purple
+  let s:visual          = s:selected_text
   let s:yellow          = s:light_yellow
 else
   let s:bg              = s:actual_white
@@ -95,7 +100,7 @@ if &background != s:background
 endif
 
 call s:h("Cursor",        {"bg": s:purple, "fg": s:norm })
-call s:h("Comment",       {"fg": s:bg_subtle, "gui": "italic"})
+call s:h("Comment",       {"fg": s:bg_comments, "gui": "italic"})
 
 call s:h("Constant",      {"fg": s:purple})
 hi! link Character        Constant
@@ -140,8 +145,8 @@ call s:h("Ignore",        {"fg": s:bg})
 call s:h("Error",         {"fg": s:actual_white, "bg": s:red, "cterm": "bold"})
 call s:h("Todo",          {"fg": s:purple, "gui": "underline", "cterm": "underline"})
 call s:h("SpecialKey",    {"fg": s:light_green})
-call s:h("NonText",       {"fg": s:medium_gray})
-call s:h("Directory",     {"fg": s:dark_blue})
+call s:h("NonText",       {"fg": s:indent_vline_gray})
+call s:h("Directory",     {"fg": s:folder_yellow})
 call s:h("ErrorMsg",      {"fg": s:red})
 call s:h("IncSearch",     {"bg": s:yellow, "fg": s:light_black})
 call s:h("Search",        {"bg": s:light_green, "fg": s:light_black})
