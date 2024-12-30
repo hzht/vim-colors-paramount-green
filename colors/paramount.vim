@@ -54,11 +54,17 @@ let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
 " to obtain the default colours run: :verbose hi TodoBgPERF ...
 let s:todo_comments_block_bg = { "gui": "#00A4FF", "cterm": "208" }  " For PERF, HACK, NOTE, TODO, FIX, WARN
 let s:todo_comments_block_text_yellow = { "gui": "#FFDF00", "cterm": "15"}
+let s:todo_comments_block_bg_yellow = { "gui": "#141106", "cterm": "15"}
 let s:todo_comments_block_text_red = { "gui": "#FF0000", "cterm": "15"}
+let s:todo_comments_block_bg_red = { "gui": "#120606", "cterm": "15"}
 let s:todo_comments_block_text_lime = { "gui": "#00FF00", "cterm": "15"}
-let s:todo_comments_block_text_cyan = { "gui": "#8cf8f7", "cterm": "15"}
+let s:todo_comments_block_bg_lime = { "gui": "#061406", "cterm": "15"}
+let s:todo_comments_block_text_blue = { "gui": "#31529E", "cterm": "15"}
+let s:todo_comments_block_bg_blue = { "gui": "#060B14", "cterm": "15"}
 let s:todo_comments_block_text_turquoise = { "gui": "#319E9C", "cterm": "15"}
+let s:todo_comments_block_bg_turquoise = { "gui": "#050F0F", "cterm": "15"}
 let s:todo_comments_block_text_orange = { "gui": "#FF8000", "cterm": "15"}
+let s:todo_comments_block_bg_orange = { "gui": "#120A06", "cterm": "15"}
 let s:todo_comments = { "gui": "#404040", "cterm": "15" } " same as regular comments
 
 let s:background = &background
@@ -240,26 +246,20 @@ hi link GitGutterChange             LineNr
 hi link GitGutterChangeDelete       LineNr
 
 " Todo-comments highlight groups
-call s:h("TodoBgWARN",    {"fg": s:todo_comments_block_text_orange })
-call s:h("TodoFgWARN",    {"fg": s:comments })
-call s:h("TodoSignWARN",  {"fg": s:todo_comments_block_bg })
+call s:h("TodoBgWARN", {"fg": s:todo_comments_block_text_orange, "bg": s:todo_comments_block_bg_orange, "gui": "bold", "cterm": "bold" })
+call s:h("TodoFgWARN", {"fg": s:comments })
 
-call s:h("TodoBgPERF",    {"fg": s:todo_comments_block_text_turquoise })
-call s:h("TodoFgPERF",    {"fg": s:comments })
-call s:h("TodoSignPERF",  {"fg": s:todo_comments_block_bg })
+call s:h("TodoBgPERF", {"fg": s:todo_comments_block_text_blue, "bg": s:todo_comments_block_bg_blue, "gui": "bold", "cterm": "bold" })
+call s:h("TodoFgPERF", {"fg": s:comments })
 
-call s:h("TodoBgHACK",    {"fg": s:todo_comments_block_text_lime })
-call s:h("TodoFgHACK",    {"fg": s:comments })
-call s:h("TodoSignHACK",  {"fg": s:todo_comments_block_bg })
+call s:h("TodoBgHACK", {"fg": s:todo_comments_block_text_lime, "bg": s:todo_comments_block_bg_lime, "gui": "bold", "cterm": "bold" })
+call s:h("TodoFgHACK", {"fg": s:comments })
 
-call s:h("TodoBgTODO",    {"fg": s:todo_comments_block_text_yellow })
-call s:h("TodoFgTODO",    {"fg": s:comments })
-call s:h("TodoSignTODO",  {"fg": s:todo_comments_block_bg })
+call s:h("TodoBgTODO", {"fg": s:todo_comments_block_text_yellow, "bg": s:todo_comments_block_bg_yellow, "gui": "bold", "cterm": "bold" })
+call s:h("TodoFgTODO", {"fg": s:comments })
 
-call s:h("TodoBgNOTE",    {"fg": s:todo_comments_block_text_cyan })
-call s:h("TodoFgNOTE",    {"fg": s:comments })
-call s:h("TodoSignNOTE",  {"fg": s:todo_comments_block_bg })
+call s:h("TodoBgNOTE", {"fg": s:todo_comments_block_text_turquoise, "bg": s:todo_comments_block_bg_turquoise, "gui": "bold", "cterm": "bold" })
+call s:h("TodoFgNOTE", {"fg": s:comments })
 
-call s:h("TodoBgFIX",     {"fg": s:todo_comments_block_text_red })
-call s:h("TodoFgFIX",     {"fg": s:comments })
-call s:h("TodoSignFIX",   {"fg": s:todo_comments_block_bg })
+call s:h("TodoBgFIX", {"fg": s:todo_comments_block_text_red, "bg": s:todo_comments_block_bg_red, "gui": "bold", "cterm": "bold" })
+call s:h("TodoFgFIX", {"fg": s:comments })
