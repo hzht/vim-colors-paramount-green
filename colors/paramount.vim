@@ -51,6 +51,16 @@ let s:yellow          = { "gui": "#F3E430", "cterm": "11"  }
 let s:light_yellow    = { "gui": "#ffff87", "cterm": "228" }
 let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
 
+" to obtain the default colours run: :verbose hi TodoBgPERF ...
+let s:todo_comments_block_bg = { "gui": "#00A4FF", "cterm": "208" }  " For PERF, HACK, NOTE, TODO, FIX, WARN
+let s:todo_comments_block_text_yellow = { "gui": "#FFDF00", "cterm": "15"}
+let s:todo_comments_block_text_red = { "gui": "#FF0000", "cterm": "15"}
+let s:todo_comments_block_text_lime = { "gui": "#00FF00", "cterm": "15"}
+let s:todo_comments_block_text_cyan = { "gui": "#8cf8f7", "cterm": "15"}
+let s:todo_comments_block_text_turquoise = { "gui": "#319E9C", "cterm": "15"}
+let s:todo_comments_block_text_orange = { "gui": "#FF8000", "cterm": "15"}
+let s:todo_comments = { "gui": "#404040", "cterm": "15" } " same as regular comments
+
 let s:background = &background
 
 if &background == "dark"
@@ -59,6 +69,7 @@ if &background == "dark"
   let s:bg_comments     = s:comments
   let s:bg_very_subtle  = s:subtle_black
   let s:norm            = s:lighter_gray
+  let s:menu_selected_text = s:subtle_black
   let s:norm_subtle     = s:medium_gray
   let s:purple          = s:light_purple
   let s:cyan            = s:light_cyan
@@ -185,7 +196,7 @@ else
 endif
 
 call s:h("Pmenu",         {"fg": s:norm, "bg": s:bg_subtle})
-call s:h("PmenuSel",      {"fg": s:norm, "bg": s:purple})
+call s:h("PmenuSel",      {"fg": s:menu_selected_text, "bg": s:purple})
 call s:h("PmenuSbar",     {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("PmenuThumb",    {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("TabLine",       {"fg": s:norm, "bg": s:bg_very_subtle})
@@ -227,3 +238,28 @@ hi link GitGutterAdd                LineNr
 hi link GitGutterDelete             LineNr
 hi link GitGutterChange             LineNr
 hi link GitGutterChangeDelete       LineNr
+
+" Todo-comments highlight groups
+call s:h("TodoBgWARN",    {"fg": s:todo_comments_block_text_orange })
+call s:h("TodoFgWARN",    {"fg": s:comments })
+call s:h("TodoSignWARN",  {"fg": s:todo_comments_block_bg })
+
+call s:h("TodoBgPERF",    {"fg": s:todo_comments_block_text_turquoise })
+call s:h("TodoFgPERF",    {"fg": s:comments })
+call s:h("TodoSignPERF",  {"fg": s:todo_comments_block_bg })
+
+call s:h("TodoBgHACK",    {"fg": s:todo_comments_block_text_lime })
+call s:h("TodoFgHACK",    {"fg": s:comments })
+call s:h("TodoSignHACK",  {"fg": s:todo_comments_block_bg })
+
+call s:h("TodoBgTODO",    {"fg": s:todo_comments_block_text_yellow })
+call s:h("TodoFgTODO",    {"fg": s:comments })
+call s:h("TodoSignTODO",  {"fg": s:todo_comments_block_bg })
+
+call s:h("TodoBgNOTE",    {"fg": s:todo_comments_block_text_cyan })
+call s:h("TodoFgNOTE",    {"fg": s:comments })
+call s:h("TodoSignNOTE",  {"fg": s:todo_comments_block_bg })
+
+call s:h("TodoBgFIX",     {"fg": s:todo_comments_block_text_red })
+call s:h("TodoFgFIX",     {"fg": s:comments })
+call s:h("TodoSignFIX",   {"fg": s:todo_comments_block_bg })
