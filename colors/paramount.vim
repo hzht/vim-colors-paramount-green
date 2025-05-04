@@ -25,9 +25,10 @@ let s:indent_vline_gray = { "gui": "#242424", "cterm": "243" }
 let s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
 let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
 let s:subtle_black    = { "gui": "#303030", "cterm": "236" }
+let s:near_black      = { "gui": "#1A1A1A", "cterm": "235" }
 let s:light_black     = { "gui": "#262626", "cterm": "235" }
 let s:lighter_black   = { "gui": "#4E4E4E", "cterm": "239" } "#4E4E4E
-let s:comments        = { "gui": "#404040", "cterm": "239" }
+let s:dark_gray        = { "gui": "#404040", "cterm": "239" }
 let s:light_gray      = { "gui": "#A8A8A8", "cterm": "248" }
 let s:lighter_gray    = { "gui": "#C6C6C6", "cterm": "251" }
 let s:lightest_gray   = { "gui": "#EEEEEE", "cterm": "255" }
@@ -36,7 +37,6 @@ let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
 let s:light_red       = { "gui": "#E32791", "cterm": "1"   }
 let s:orange          = { "gui": "#D75F5F", "cterm": "167" }
 let s:darker_blue     = { "gui": "#005F87", "cterm": "18"  }
-let s:folder_yellow   = { "gui": "#a790d5", "cterm": "32"  }
 let s:dark_blue       = { "gui": "#008EC4", "cterm": "32"  }
 let s:blue            = { "gui": "#20BBFC", "cterm": "12"  }
 let s:light_blue      = { "gui": "#b6d6fd", "cterm": "153" }
@@ -45,11 +45,18 @@ let s:light_cyan      = { "gui": "#4FB8CC", "cterm": "14"  }
 let s:dark_green      = { "gui": "#10A778", "cterm": "2"   }
 let s:light_green     = { "gui": "#5FD7A7", "cterm": "10"  }
 let s:dark_purple     = { "gui": "#af5fd7", "cterm": "134" }
+let s:darkest_purple  = { "gui": "#645780", "cterm": "134" }
 let s:light_purple    = { "gui": "#a790d5", "cterm": "140" }
-let s:selected_text   = { "gui": "#413273", "cterm": "140" }
+let s:selected_text   = { "gui": "#2C3043", "cterm": "140" } " original #413273, then #221A3D (dark purple)
 let s:yellow          = { "gui": "#F3E430", "cterm": "11"  }
 let s:light_yellow    = { "gui": "#ffff87", "cterm": "228" }
 let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
+let s:cyber_blue      = { "gui": "#165aa2", "cterm": "134" }
+let s:cyber_blue_light= { "gui": "#5186ee", "cterm": "134" }
+let s:dark_dark_purple= { "gui": "#221A3D", "cterm": "134" }
+let s:very_light_cyan = { "gui": "#94D5CD", "cterm": "228" }
+let s:very_light_green= { "gui": "#94D6A9", "cterm": "228" }
+let s:baby_blue       = { "gui": "#ADEEFF", "cterm": "15" }
 
 " to obtain the default colours run: :verbose hi TodoBgPERF ...
 let s:todo_comments_block_bg = { "gui": "#00A4FF", "cterm": "208" }  " For PERF, HACK, NOTE, TODO, FIX, WARN
@@ -65,14 +72,16 @@ let s:todo_comments_block_text_turquoise = { "gui": "#319E9C", "cterm": "15"}
 let s:todo_comments_block_bg_turquoise = { "gui": "#050F0F", "cterm": "15"}
 let s:todo_comments_block_text_orange = { "gui": "#FF8000", "cterm": "15"}
 let s:todo_comments_block_bg_orange = { "gui": "#120A06", "cterm": "15"}
-let s:todo_comments = { "gui": "#404040", "cterm": "15" } " same as regular comments
+let s:todo_comments_block_text_pink = { "gui": "#BF00FF", "cterm": "15"}
+let s:todo_comments_block_bg_pink = { "gui": "#0F0014", "cterm": "15"}
+let s:todo_comments_white = { "gui": "#F1F1F1", "cterm": "15" } " same as regular comments
 
 let s:background = &background
 
 if &background == "dark"
   let s:bg              = s:black
   let s:bg_subtle       = s:lighter_black
-  let s:bg_comments     = s:comments
+  let s:bg_comments     = s:dark_gray
   let s:bg_very_subtle  = s:subtle_black
   let s:norm            = s:lighter_gray
   let s:menu_selected_text = s:subtle_black
@@ -163,15 +172,15 @@ call s:h("Error",         {"fg": s:actual_white, "bg": s:red, "cterm": "bold"})
 call s:h("Todo",          {"fg": s:purple, "gui": "underline", "cterm": "underline"})
 call s:h("SpecialKey",    {"fg": s:light_green})
 call s:h("NonText",       {"fg": s:indent_vline_gray})
-call s:h("Directory",     {"fg": s:folder_yellow})
-call s:h("ErrorMsg",      {"fg": s:red})
-call s:h("IncSearch",     {"bg": s:yellow, "fg": s:light_black})
+call s:h("Directory",     {"fg": s:dark_gray})
+call s:h("ErrorMsg",      {"fg": s:darkest_purple})
+call s:h("IncSearch",     {"bg": s:black, "fg": s:todo_comments_block_text_lime}) " originally yellow (light_yellow), light_black"
 call s:h("Search",        {"bg": s:light_green, "fg": s:light_black})
 call s:h("MoreMsg",       {"fg": s:medium_gray, "cterm": "bold", "gui": "bold"})
 hi! link ModeMsg MoreMsg
-call s:h("LineNr",        {"fg": s:bg_subtle})
+call s:h("LineNr",        {"fg": s:dark_gray}) "bg_subtle
 call s:h("CursorLineNr",  {"fg": s:purple, "bg": s:bg_very_subtle})
-call s:h("Question",      {"fg": s:red})
+call s:h("Question",      {"fg": s:darkest_purple})
 call s:h("StatusLine",    {"bg": s:bg_very_subtle})
 call s:h("StatusLineNC",  {"bg": s:bg_very_subtle, "fg": s:medium_gray})
 call s:h("VertSplit",     {"bg": s:bg_very_subtle, "fg": s:bg_very_subtle})
@@ -215,6 +224,28 @@ call s:h("ColorColumn",   {"bg": s:bg_subtle})
 call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
 call s:h("qfLineNr",      {"fg": s:medium_gray})
 
+
+" Overrides
+"call s:h("@punctuation.delimiter", {"fg": s:medium_gray, "gui": "italic"})
+call s:h("@constant", {"fg": s:medium_gray})
+call s:h("@keyword.return", {"fg": s:dark_gray})
+call s:h("@operator", {"fg": s:medium_gray})
+call s:h("@string.escape", {"fg": s:dark_gray})
+
+" Python specific overrides
+call s:h("@variable.parameter.python", {"fg": s:medium_gray})
+call s:h("@type.python", {"fg": s:medium_gray}) " Either Or
+call s:h("@keyword.exception.python", {"fg": s:dark_gray})
+call s:h("@string.documentation.python", {"fg": s:dark_gray})
+
+" Go specific overrides
+" call s:h("@function.method.call.go", {"fg": s:medium_gray})
+" call s:h("@comment.documentation.go", {"fg": s:dark_gray})
+
+" Rust specific overrides
+
+" JavaScript specific overrides
+
 call s:h("htmlH1",        {"bg": s:bg, "fg": s:norm})
 call s:h("htmlH2",        {"bg": s:bg, "fg": s:norm})
 call s:h("htmlH3",        {"bg": s:bg, "fg": s:norm})
@@ -229,12 +260,12 @@ call s:h("SyntasticErrorSign",      {"fg": s:red})
 call s:h("SyntasticError",          {"bg": s:red, "fg": s:white, "gui": "bold", "cterm": "bold"})
 
 " Neomake
-hi link NeomakeWarningSign	SyntasticWarningSign
-hi link NeomakeErrorSign	SyntasticErrorSign
+hi link NeomakeWarningSign  SyntasticWarningSign
+hi link NeomakeErrorSign  SyntasticErrorSign
 
 " ALE
-hi link ALEWarningSign	SyntasticWarningSign
-hi link ALEErrorSign	SyntasticErrorSign
+hi link ALEWarningSign  SyntasticWarningSign
+hi link ALEErrorSign  SyntasticErrorSign
 
 " Signify, git-gutter
 hi link SignifySignAdd              LineNr
@@ -246,20 +277,26 @@ hi link GitGutterChange             LineNr
 hi link GitGutterChangeDelete       LineNr
 
 " Todo-comments highlight groups
-call s:h("TodoBgWARN", {"fg": s:todo_comments_block_text_orange, "bg": s:todo_comments_block_bg_orange, "gui": "bold", "cterm": "bold" })
-call s:h("TodoFgWARN", {"fg": s:comments })
+call s:h("TodoBgWARN", {"fg": s:todo_comments_block_text_orange, "bg": s:todo_comments_block_bg_orange, "cterm": "bold" })
+call s:h("TodoFgWARN", {"fg": s:dark_gray })
 
-call s:h("TodoBgPERF", {"fg": s:todo_comments_block_text_blue, "bg": s:todo_comments_block_bg_blue, "gui": "bold", "cterm": "bold" })
-call s:h("TodoFgPERF", {"fg": s:comments })
+call s:h("TodoBgPERF", {"fg": s:todo_comments_block_text_blue, "bg": s:todo_comments_block_bg_blue, "cterm": "bold" })
+call s:h("TodoFgPERF", {"fg": s:dark_gray })
 
-call s:h("TodoBgHACK", {"fg": s:todo_comments_block_text_lime, "bg": s:todo_comments_block_bg_lime, "gui": "bold", "cterm": "bold" })
-call s:h("TodoFgHACK", {"fg": s:comments })
+call s:h("TodoBgHACK", {"fg": s:todo_comments_block_text_lime, "bg": s:todo_comments_block_bg_lime, "cterm": "bold" })
+call s:h("TodoFgHACK", {"fg": s:dark_gray })
 
-call s:h("TodoBgTODO", {"fg": s:todo_comments_block_text_yellow, "bg": s:todo_comments_block_bg_yellow, "gui": "bold", "cterm": "bold" })
-call s:h("TodoFgTODO", {"fg": s:comments })
+call s:h("TodoBgTODO", {"fg": s:todo_comments_block_text_yellow, "bg": s:todo_comments_block_bg_yellow, "cterm": "bold" })
+call s:h("TodoFgTODO", {"fg": s:dark_gray })
 
-call s:h("TodoBgNOTE", {"fg": s:todo_comments_block_text_turquoise, "bg": s:todo_comments_block_bg_turquoise, "gui": "bold", "cterm": "bold" })
-call s:h("TodoFgNOTE", {"fg": s:comments })
+call s:h("TodoBgNOTE", {"fg": s:todo_comments_block_text_turquoise, "bg": s:todo_comments_block_bg_turquoise, "cterm": "bold" })
+call s:h("TodoFgNOTE", {"fg": s:dark_gray })
 
-call s:h("TodoBgFIX", {"fg": s:todo_comments_block_text_red, "bg": s:todo_comments_block_bg_red, "gui": "bold", "cterm": "bold" })
-call s:h("TodoFgFIX", {"fg": s:comments })
+call s:h("TodoBgFIX", {"fg": s:todo_comments_block_text_red, "bg": s:todo_comments_block_bg_red, "cterm": "bold" })
+call s:h("TodoFgFIX", {"fg": s:dark_gray })
+
+call s:h("TodoBgIMPORTANT", {"fg": s:todo_comments_block_text_pink, "bg": s:todo_comments_block_bg_pink, "cterm": "bold" })
+call s:h("TodoFgIMPORTANT", {"fg": s:dark_gray })
+
+call s:h("TodoBg_", {"fg": s:black, "gui": "bold" })
+call s:h("TodoFg_", {"fg": s:light_cyan, "bg": s:todo_comments_block_bg_turquoise, "cterm": "bold" })
