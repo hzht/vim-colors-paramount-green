@@ -21,7 +21,7 @@ let g:colors_name='paramount'
 
 let s:black           = { "gui": "#000000", "cterm": "232" }
 let s:medium_gray     = { "gui": "#767676", "cterm": "243" }
-let s:indent_vline_gray = { "gui": "#242424", "cterm": "243" }
+let s:indent_vline_gray = { "gui": "#1F1F1F", "cterm": "243" }
 let s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
 let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
 let s:subtle_black    = { "gui": "#303030", "cterm": "236" }
